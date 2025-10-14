@@ -1,2 +1,28 @@
 # linen-assignment
-Linen Assignment - Employee Management Tool
+
+# Employee Management Assignment (Angular + Kendo UI)
+
+## Features
+- Employee list displayed in a **Kendo Grid** with the following columns:
+  - User Name, Email, Joining Date, Mobile, Gender, Languages Known
+  - Edit button to open popup with form for editing.
+- **Search Employee**: Input box with 300ms debounce to filter results.
+- **Add New User**: Button opens a popup with form to create new employee.
+- **Edit Employee**: Button opens the same popup with form prefilled with employee data.
+- **Reactive Forms**: Used for validation of all fields (required, email format, mobile pattern).
+
+## Tech Stack
+- Angular
+- Kendo UI for Angular
+- RxJS (for debounce search)
+- Reactive Forms
+
+## Assignment Scope
+This project demonstrates:
+- Usage of **Kendo Grid** for displaying employee data.
+- **Reactive Forms** for creating & editing employees.
+- **RxJS debounce** for optimized search.
+- Code structured with **Components** and **Service** layer.
+
+## Starting Application
+ng serve
