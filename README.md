@@ -26,3 +26,7 @@ This project demonstrates:
 
 ## Starting Application
 ng serve
+
+## Branching
+Create a new branch from the main branch for development, push your changes to this new branch, 
+and then create a pull request (PR) to merge the changes into the main branch.
