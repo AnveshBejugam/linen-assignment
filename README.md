@@ -30,3 +30,8 @@ ng serve
 ## Branching
 Create a new branch from the main branch for development, push your changes to this new branch, 
 and then create a pull request (PR) to merge the changes into the main branch.
+
+## versions
+**Angular**: 9
+**node**: ^10.13.0 || ^12.11.1(compatible with angular 9)
+If you're using different versions, please proceed with any angular version(>8) that you're comfortable with for the assignment.
