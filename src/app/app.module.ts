@@ -5,9 +5,13 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    EmployeeListComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

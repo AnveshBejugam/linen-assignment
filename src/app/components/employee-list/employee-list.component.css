@@ -1,0 +1,16 @@
+.employee-list-container {
+  padding: 20px;
+  width: 100%;
+}
+
+.employee-list-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+kendo-grid {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
