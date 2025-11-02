@@ -64,6 +64,12 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
 /***************************************************************************************************
+ * Load `$localize` onto the global scope - used by Kendo UI and other i18n libraries.
+ */
+import '@angular/localize/init';
+
+
+/***************************************************************************************************
  * APPLICATION IMPORTS
  */
 
