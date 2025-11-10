@@ -25,7 +25,19 @@ This project demonstrates:
 - Code structured with **Components** and **Service** layer.
 
 ## Starting Application
-ng serve
+
+**Important: This project requires Node.js 12.22.12**
+
+### Using nvm (Node Version Manager)
+```bash
+# Switch to the correct Node version (reads from .nvmrc)
+nvm use
+
+# Start the development server
+npm start
+```
+
+The app will run on `http://localhost:4200`
 
 ## Branching
 Create a new branch from the main branch for development, push your changes to this new branch, 

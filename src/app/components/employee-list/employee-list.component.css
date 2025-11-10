@@ -1,0 +1,64 @@
+.employee-list-container {
+  padding: 20px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.employee-list-container h2 {
+  color: #333;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Fix search icon padding */
+.search-container ::ng-deep .k-input-prefix {
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+.search-container ::ng-deep .k-icon {
+  font-size: 16px;
+}
+
+/* Ensure proper spacing for input text */
+.search-container ::ng-deep .k-input-inner {
+  padding-left: 8px;
+}
+
+kendo-grid {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+/* Custom blue color for primary buttons */
+::ng-deep .k-button-solid-primary {
+  background-color: #0042af !important;
+  border-color: #0042af !important;
+}
+
+::ng-deep .k-button-solid-primary:hover {
+  background-color: #00358c !important;
+  border-color: #00358c !important;
+}
+
+::ng-deep .k-button-solid-primary:active,
+::ng-deep .k-button-solid-primary.k-state-active {
+  background-color: #002869 !important;
+  border-color: #002869 !important;
+}
