@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../../services/employee.service';
 import { CustomValidators } from '../../validators/custom-validators';
+import { GENDER_OPTIONS, LANGUAGE_OPTIONS, VALIDATION_CONSTANTS } from '../../constants/constants';
 
 @Component({
   selector: 'app-employee-form',
@@ -17,11 +18,8 @@ export class EmployeeFormComponent implements OnInit {
   employeeForm: FormGroup;
   isEditMode = false;
 
-  genderOptions = ['Male', 'Female', 'Other'];
-  languageOptions = [
-    'English', 'Hindi', 'Bengali', 'Telugu', 'Marathi', 'Tamil', 
-    'Gujarati', 'Kannada', 'Malayalam', 'Punjabi', 'Odia', 'Urdu'
-  ];
+  genderOptions = GENDER_OPTIONS;
+  languageOptions = LANGUAGE_OPTIONS;
 
   constructor(
     private fb: FormBuilder,
@@ -48,8 +46,8 @@ export class EmployeeFormComponent implements OnInit {
     return this.fb.group({
       userName: ['', [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
+        Validators.minLength(VALIDATION_CONSTANTS.USER_NAME.MIN_LENGTH),
+        Validators.maxLength(VALIDATION_CONSTANTS.USER_NAME.MAX_LENGTH),
         CustomValidators.userName(),
         CustomValidators.noNumbers(),
         CustomValidators.noWhitespace()
@@ -68,8 +66,8 @@ export class EmployeeFormComponent implements OnInit {
       mobile: ['', [
         Validators.required,
         CustomValidators.phoneNumber(),
-        CustomValidators.phoneMinLength(10),
-        CustomValidators.phoneMaxLength(15)
+        CustomValidators.phoneMinLength(VALIDATION_CONSTANTS.MOBILE.MIN_LENGTH),
+        CustomValidators.phoneMaxLength(VALIDATION_CONSTANTS.MOBILE.MAX_LENGTH)
       ]],
       gender: [''],
       languagesKnown: [[]]

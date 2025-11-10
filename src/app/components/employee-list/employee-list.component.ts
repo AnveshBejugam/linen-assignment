@@ -3,6 +3,7 @@ import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../../services/employee.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { VALIDATION_CONSTANTS } from '../../constants/constants';
 
 @Component({
   selector: 'app-employee-list',
@@ -32,7 +33,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   setupSearch(): void {
     this.searchSubject.pipe(
-      debounceTime(300), // Wait 300ms after user stops typing
+      debounceTime(VALIDATION_CONSTANTS.SEARCH.DEBOUNCE_TIME), // Wait for configured debounce time
       distinctUntilChanged(), // Only emit if value is different from previous
       takeUntil(this.destroy$)
     ).subscribe(searchTerm => {
