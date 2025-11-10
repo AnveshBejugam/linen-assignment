@@ -91,10 +91,6 @@ export class EmployeeService {
     return this.mockEmployees;
   }
 
-  // Get employee by ID
-  getEmployeeById(id: number): Employee | undefined {
-    return this.mockEmployees.find(emp => emp.id === id);
-  }
 
   // Add new employee
   addEmployee(employee: Employee): void {
@@ -109,15 +105,6 @@ export class EmployeeService {
     const index = this.mockEmployees.findIndex(e => e.id === employee.id);
     if (index !== -1) {
       this.mockEmployees[index] = employee;
-      this.employeesSubject.next(this.mockEmployees);
-    }
-  }
-
-  // Delete employee
-  deleteEmployee(id: number): void {
-    const index = this.mockEmployees.findIndex(e => e.id === id);
-    if (index !== -1) {
-      this.mockEmployees.splice(index, 1);
       this.employeesSubject.next(this.mockEmployees);
     }
   }
