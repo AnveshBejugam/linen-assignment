@@ -6,8 +6,22 @@
     </button>
   </div>
   
+  <div class="search-container">
+    <kendo-textbox
+      [(ngModel)]="searchTerm"
+      (valueChange)="onSearchChange($event)"
+      placeholder="Search by name, email, mobile, gender, or language..."
+      [clearButton]="true"
+      class="search-input"
+    >
+      <ng-template kendoTextBoxPrefixTemplate>
+        <span class="k-icon k-i-search"></span>
+      </ng-template>
+    </kendo-textbox>
+  </div>
+  
   <kendo-grid
-    [data]="employees"
+    [data]="filteredEmployees"
     [pageable]="true"
     [pageSize]="10"
     [sortable]="true"

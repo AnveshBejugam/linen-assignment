@@ -116,3 +116,25 @@
 .modal-footer button {
   min-width: 100px;
 }
+
+/* Custom blue color for primary buttons */
+::ng-deep .k-button-solid-primary {
+  background-color: #0042af !important;
+  border-color: #0042af !important;
+}
+
+::ng-deep .k-button-solid-primary:hover:not(:disabled) {
+  background-color: #00358c !important;
+  border-color: #00358c !important;
+}
+
+::ng-deep .k-button-solid-primary:active:not(:disabled),
+::ng-deep .k-button-solid-primary.k-state-active {
+  background-color: #002869 !important;
+  border-color: #002869 !important;
+}
+
+::ng-deep .k-button-solid-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
