@@ -2,8 +2,8 @@ export interface Employee {
   id: number;
   userName: string;
   email: string;
-  joiningDate: Date;
+  joiningDate?: Date;
   mobile: string;
-  gender: 'Male' | 'Female' | 'Other';
-  languagesKnown: string[];
+  gender?: 'Male' | 'Female' | 'Other';
+  languagesKnown?: string[];
 }

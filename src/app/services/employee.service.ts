@@ -9,75 +9,75 @@ export class EmployeeService {
   private mockEmployees: Employee[] = [
     {
       id: 1,
-      userName: 'John Doe',
-      email: 'john.doe@example.com',
+      userName: 'Rajesh Kumar',
+      email: 'rajesh.kumar@example.com',
       joiningDate: new Date('2020-01-15'),
-      mobile: '+1234567890',
+      mobile: '9876543210',
       gender: 'Male',
-      languagesKnown: ['English', 'Spanish']
+      languagesKnown: ['English', 'Hindi']
     },
     {
       id: 2,
-      userName: 'Jane Smith',
-      email: 'jane.smith@example.com',
+      userName: 'Priya Sharma',
+      email: 'priya.sharma@example.com',
       joiningDate: new Date('2019-05-20'),
-      mobile: '+1987654321',
+      mobile: '9845678901',
       gender: 'Female',
-      languagesKnown: ['English', 'French', 'German']
+      languagesKnown: ['English', 'Hindi', 'Tamil']
     },
     {
       id: 3,
-      userName: 'Michael Johnson',
-      email: 'michael.j@example.com',
+      userName: 'Amit Patel',
+      email: 'amit.patel@example.com',
       joiningDate: new Date('2021-03-10'),
-      mobile: '+1122334455',
+      mobile: '8765432109',
       gender: 'Male',
-      languagesKnown: ['English']
+      languagesKnown: ['English', 'Gujarati']
     },
     {
       id: 4,
-      userName: 'Emily Davis',
-      email: 'emily.davis@example.com',
+      userName: 'Sneha Reddy',
+      email: 'sneha.reddy@example.com',
       joiningDate: new Date('2020-08-25'),
-      mobile: '+1555666777',
+      mobile: '7654321098',
       gender: 'Female',
-      languagesKnown: ['English', 'Italian', 'Portuguese']
+      languagesKnown: ['English', 'Telugu', 'Kannada']
     },
     {
       id: 5,
-      userName: 'David Wilson',
-      email: 'david.wilson@example.com',
+      userName: 'Vikram Singh',
+      email: 'vikram.singh@example.com',
       joiningDate: new Date('2018-11-30'),
-      mobile: '+1999888777',
+      mobile: '9123456780',
       gender: 'Male',
-      languagesKnown: ['English', 'Mandarin']
+      languagesKnown: ['English', 'Hindi', 'Punjabi']
     },
     {
       id: 6,
-      userName: 'Sarah Brown',
-      email: 'sarah.brown@example.com',
+      userName: 'Ananya Iyer',
+      email: 'ananya.iyer@example.com',
       joiningDate: new Date('2022-02-14'),
-      mobile: '+1444333222',
+      mobile: '9012345678',
       gender: 'Female',
-      languagesKnown: ['English', 'Japanese', 'Korean']
+      languagesKnown: ['English', 'Tamil', 'Malayalam']
     },
     {
       id: 7,
-      userName: 'Chris Martinez',
-      email: 'chris.m@example.com',
+      userName: 'Arjun Mehta',
+      email: 'arjun.mehta@example.com',
       joiningDate: new Date('2021-07-18'),
-      mobile: '+1777888999',
-      gender: 'Other',
-      languagesKnown: ['English', 'Spanish', 'French']
+      mobile: '8901234567',
+      gender: 'Male',
+      languagesKnown: ['English', 'Hindi', 'Marathi']
     },
     {
       id: 8,
-      userName: 'Lisa Anderson',
-      email: 'lisa.anderson@example.com',
+      userName: 'Kavya Nair',
+      email: 'kavya.nair@example.com',
       joiningDate: new Date('2019-09-05'),
-      mobile: '+1666555444',
+      mobile: '7890123456',
       gender: 'Female',
-      languagesKnown: ['English', 'Russian']
+      languagesKnown: ['English', 'Malayalam', 'Tamil']
     }
   ];
 
@@ -86,7 +86,55 @@ export class EmployeeService {
 
   constructor() { }
 
+  // Get all employees
   getAllEmployees(): Employee[] {
     return this.mockEmployees;
+  }
+
+  // Get employee by ID
+  getEmployeeById(id: number): Employee | undefined {
+    return this.mockEmployees.find(emp => emp.id === id);
+  }
+
+  // Add new employee
+  addEmployee(employee: Employee): void {
+    const newId = Math.max(...this.mockEmployees.map(e => e.id), 0) + 1;
+    const newEmployee = { ...employee, id: newId };
+    this.mockEmployees.push(newEmployee);
+    this.employeesSubject.next(this.mockEmployees);
+  }
+
+  // Update employee
+  updateEmployee(employee: Employee): void {
+    const index = this.mockEmployees.findIndex(e => e.id === employee.id);
+    if (index !== -1) {
+      this.mockEmployees[index] = employee;
+      this.employeesSubject.next(this.mockEmployees);
+    }
+  }
+
+  // Delete employee
+  deleteEmployee(id: number): void {
+    const index = this.mockEmployees.findIndex(e => e.id === id);
+    if (index !== -1) {
+      this.mockEmployees.splice(index, 1);
+      this.employeesSubject.next(this.mockEmployees);
+    }
+  }
+
+  // Search/Filter employees
+  filterEmployees(searchTerm: string): Employee[] {
+    if (!searchTerm || searchTerm.trim() === '') {
+      return this.mockEmployees;
+    }
+
+    const term = searchTerm.toLowerCase();
+    return this.mockEmployees.filter(emp =>
+      emp.userName.toLowerCase().includes(term) ||
+      emp.email.toLowerCase().includes(term) ||
+      emp.mobile.includes(term) ||
+      emp.gender.toLowerCase().includes(term) ||
+      emp.languagesKnown.some(lang => lang.toLowerCase().includes(term))
+    );
   }
 }

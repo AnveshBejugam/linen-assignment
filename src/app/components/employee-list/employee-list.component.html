@@ -1,5 +1,10 @@
 <div class="employee-list-container">
-  <h2>Employee Management System</h2>
+  <div class="header">
+    <h2>Employee Management System</h2>
+    <button kendoButton [primary]="true" (click)="onAddEmployee()">
+      Add Employee
+    </button>
+  </div>
   
   <kendo-grid
     [data]="employees"
@@ -7,7 +12,6 @@
     [pageSize]="10"
     [sortable]="true"
     [resizable]="true"
-    [height]="600"
   >
     <kendo-grid-column
       field="userName"
@@ -65,4 +69,12 @@
       </ng-template>
     </kendo-grid-column>
   </kendo-grid>
+
+  <!-- Employee Form Dialog -->
+  <app-employee-form
+    *ngIf="showDialog"
+    [employee]="selectedEmployee"
+    (closeDialog)="onCloseDialog()"
+    (employeeSaved)="onEmployeeSaved()"
+  ></app-employee-form>
 </div>

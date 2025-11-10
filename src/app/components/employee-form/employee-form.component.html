@@ -1,0 +1,116 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h3>
+      <button kendoButton type="button" class="close-btn" (click)="onClose()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        
+        <!-- User Name -->
+        <div class="form-field">
+          <kendo-label [for]="userName">
+            User Name <span class="required-asterisk">*</span>
+          </kendo-label>
+          <kendo-textbox
+            #userName
+            formControlName="userName"
+            placeholder="Enter full name (e.g., Rajesh Kumar)"
+          ></kendo-textbox>
+          <div class="error-message" *ngIf="f.userName.invalid && f.userName.touched">
+            <span *ngIf="f.userName.errors?.required">User name is required</span>
+            <span *ngIf="f.userName.errors?.minlength">User name must be at least 3 characters</span>
+            <span *ngIf="f.userName.errors?.maxlength">User name cannot exceed 50 characters</span>
+            <span *ngIf="f.userName.errors?.invalidName">User name can only contain letters, spaces, dots, hyphens, and apostrophes</span>
+            <span *ngIf="f.userName.errors?.hasNumbers">User name cannot contain numbers</span>
+            <span *ngIf="f.userName.errors?.whitespace">User name cannot have leading or trailing spaces</span>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-field">
+          <kendo-label [for]="email">
+            Email <span class="required-asterisk">*</span>
+          </kendo-label>
+          <kendo-textbox
+            #email
+            formControlName="email"
+            placeholder="Enter email address (e.g., john@example.com)"
+            type="email"
+          ></kendo-textbox>
+          <div class="error-message" *ngIf="f.email.invalid && f.email.touched">
+            <span *ngIf="f.email.errors?.required">Email is required</span>
+            <span *ngIf="f.email.errors?.email">Please enter a valid email format</span>
+            <span *ngIf="f.email.errors?.invalidEmail">Email must be in valid format (e.g., user@example.com)</span>
+            <span *ngIf="f.email.errors?.whitespace">Email cannot have leading or trailing spaces</span>
+            <span *ngIf="f.email.errors?.duplicateEmail">This email is already registered</span>
+          </div>
+        </div>
+
+        <!-- Joining Date -->
+        <div class="form-field">
+          <kendo-label [for]="joiningDate" text="Joining Date"></kendo-label>
+          <kendo-datepicker
+            #joiningDate
+            formControlName="joiningDate"
+            [format]="'dd/MM/yyyy'"
+          ></kendo-datepicker>
+          <div class="error-message" *ngIf="f.joiningDate.invalid && f.joiningDate.touched">
+            <span *ngIf="f.joiningDate.errors?.futureDate">Joining date cannot be in the future</span>
+            <span *ngIf="f.joiningDate.errors?.dateOutOfRange">Joining date must be within the last 50 years</span>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="form-field">
+          <kendo-label [for]="mobile">
+            Mobile <span class="required-asterisk">*</span>
+          </kendo-label>
+          <kendo-textbox
+            #mobile
+            formControlName="mobile"
+            placeholder="9876543210 or +91-9876543210"
+          ></kendo-textbox>
+          <div class="error-message" *ngIf="f.mobile.invalid && f.mobile.touched">
+            <span *ngIf="f.mobile.errors?.required">Mobile number is required</span>
+            <span *ngIf="f.mobile.errors?.invalidPhone">Please enter a valid Indian mobile number (10 digits starting with 6-9, optional +91)</span>
+            <span *ngIf="f.mobile.errors?.phoneMinLength">Phone number must be exactly 10 digits</span>
+            <span *ngIf="f.mobile.errors?.phoneMaxLength">Phone number must be exactly 10 digits</span>
+          </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="form-field">
+          <kendo-label [for]="gender" text="Gender"></kendo-label>
+          <kendo-dropdownlist
+            #gender
+            formControlName="gender"
+            [data]="genderOptions"
+            [defaultItem]="'Select Gender'"
+          ></kendo-dropdownlist>
+        </div>
+
+        <!-- Languages Known -->
+        <div class="form-field">
+          <kendo-label [for]="languages" text="Languages Known"></kendo-label>
+          <kendo-multiselect
+            #languages
+            formControlName="languagesKnown"
+            [data]="languageOptions"
+            placeholder="Select one or more languages"
+          ></kendo-multiselect>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="modal-footer">
+          <button kendoButton type="button" (click)="onClose()">Cancel</button>
+          <button kendoButton [primary]="true" type="submit" 
+                  [disabled]="!canUpdate">
+            {{ isEditMode ? 'Update' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

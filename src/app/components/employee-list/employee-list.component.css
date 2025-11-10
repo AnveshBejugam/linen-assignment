@@ -3,9 +3,16 @@
   width: 100%;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .employee-list-container h2 {
   color: #333;
-  margin-bottom: 20px;
+  margin: 0;
   font-size: 28px;
   font-weight: 600;
 }

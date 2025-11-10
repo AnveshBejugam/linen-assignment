@@ -9,6 +9,8 @@ import { EmployeeService } from '../../services/employee.service';
 })
 export class EmployeeListComponent implements OnInit {
   public employees: Employee[] = [];
+  public showDialog = false;
+  public selectedEmployee: Employee | null = null;
 
   constructor(private employeeService: EmployeeService) { }
 
@@ -20,12 +22,27 @@ export class EmployeeListComponent implements OnInit {
     this.employees = this.employeeService.getAllEmployees();
   }
 
+  onAddEmployee(): void {
+    this.selectedEmployee = null;
+    this.showDialog = true;
+  }
+
   onEditClick(dataItem: Employee): void {
-    console.log('Edit employee:', dataItem);
+    this.selectedEmployee = dataItem;
+    this.showDialog = true;
+  }
+
+  onCloseDialog(): void {
+    this.showDialog = false;
+    this.selectedEmployee = null;
+  }
+
+  onEmployeeSaved(): void {
+    this.loadEmployees();
   }
 
   // Format languages array to comma-separated string for display
-  formatLanguages(languages: string[]): string {
-    return languages.join(', ');
+  formatLanguages(languages?: string[]): string {
+    return languages && languages.length > 0 ? languages.join(', ') : '-';
   }
 }
